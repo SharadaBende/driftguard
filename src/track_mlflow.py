@@ -13,7 +13,7 @@ df = pd.read_parquet("data/processed/taxi_sample.parquet")
 model = XGBRegressor()
 model.load_model("models/baseline.json")
 
-mlflow.set_tracking_uri("file:./mlruns")
+mlflow.set_tracking_uri("sqlite:///mlflow.db")
 mlflow.set_experiment("driftguard")
 
 with mlflow.start_run(run_name="baseline_2019"):
