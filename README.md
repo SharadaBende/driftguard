@@ -59,9 +59,15 @@ Feature importance ranking stays stable between 2019 and 2023-10, with trip dist
 
 ## Dashboard
 
-![DriftGuard dashboard](docs/images/dashboard_2023-10.png)
+**2020-04: red because of input drift (COVID)**
 
-The Streamlit dashboard shows the status for any month: model error, input drift, target drift, a PSI heatmap and the estimated excess error in dollars. The screenshot shows 2023-10, which is red.
+![Dashboard 2020-04](docs/images/dashboard_2020-04.png)
+
+**2023-10: red because of target drift and model error, while inputs stay green**
+
+![Dashboard 2023-10](docs/images/dashboard_2023-10.png)
+
+The Streamlit dashboard shows the status for any month: model error, input drift, target drift, a PSI heatmap and the estimated excess error in dollars. The two screenshots show the two different kinds of red.
 
 ## Results by period
 
@@ -99,4 +105,5 @@ Then start any of these (use a separate terminal for each):
     mlflow ui --backend-store-uri sqlite:///mlflow.db     # MLflow at http://127.0.0.1:5000
     python -m pytest tests -v                             # unit tests
     python src\alerts.py --month 2023-10                  # alert dry run
+
 
