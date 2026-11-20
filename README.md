@@ -79,3 +79,17 @@ Status combines three signals: input drift (PSI), target drift (PSI on fare) and
 - The Dockerfile is included but was not tested on the author's machine.
 - Alerts run in dry-run mode unless Slack or email credentials are set.
 
+
+## Run the other parts
+
+Requires Python 3.12 (newer versions can break some libraries). After the steps above, also run:
+
+    python src\business_impact.py
+    python src\retrain.py
+
+Then start any of these (use a separate terminal for each):
+
+    uvicorn src.api:app --reload                          # API docs at http://127.0.0.1:8000/docs
+    mlflow ui --backend-store-uri sqlite:///mlflow.db     # MLflow at http://127.0.0.1:5000
+    python -m pytest tests -v                             # unit tests
+    python src\alerts.py --month 2023-10                  # alert dry run
