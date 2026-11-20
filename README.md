@@ -41,7 +41,7 @@ Python, DuckDB (SQL on Parquet), Pandas, Scikit-learn, XGBoost, SciPy, Evidently
     python -m venv venv
     venv\Scripts\activate
     pip install -r requirements.txt
-    python src\download_data.py 2019-01 2020-04 2023-10
+    python src\download_data.py 2019-01 2019-04 2019-07 2019-10 2020-01 2020-04 2020-07 2020-10 2021-01 2021-04 2021-07 2021-10 2022-01 2022-04 2022-07 2022-10 2023-01 2023-04 2023-07 2023-10
     python src\build_dataset.py
     python src\train_baseline.py
     python src\score_months.py
@@ -78,3 +78,4 @@ Status combines three signals: input drift (PSI), target drift (PSI on fare) and
 - The challenger model was trained on only 3 months. It recovered about half of the excess error, not all of it.
 - The Dockerfile is included but was not tested on the author's machine.
 - Alerts run in dry-run mode unless Slack or email credentials are set.
+
