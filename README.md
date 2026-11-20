@@ -51,6 +51,12 @@ Python, DuckDB (SQL on Parquet), Pandas, Scikit-learn, XGBoost, SciPy, Evidently
 
 Note: `data/` and `models/` are not stored in Git, so run the steps above to recreate them.
 
+## Root cause analysis (SHAP)
+
+![SHAP importance](reports/shap_importance.png)
+
+Feature importance ranking stays stable between 2019 and 2023-10, with trip distance dominating in both periods. The failure is a shift in fare level, which input-drift monitoring alone cannot detect.
+
 ## Dashboard
 
 ![DriftGuard dashboard](docs/images/dashboard_2023-10.png)
@@ -93,3 +99,4 @@ Then start any of these (use a separate terminal for each):
     mlflow ui --backend-store-uri sqlite:///mlflow.db     # MLflow at http://127.0.0.1:5000
     python -m pytest tests -v                             # unit tests
     python src\alerts.py --month 2023-10                  # alert dry run
+
