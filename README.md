@@ -50,3 +50,9 @@ Python, DuckDB (SQL on Parquet), Pandas, Scikit-learn, XGBoost, SciPy, Evidently
     streamlit run src\dashboard.py
 
 Note: `data/` and `models/` are not stored in Git, so run the steps above to recreate them.
+
+## Dashboard
+
+![DriftGuard dashboard](docs/images/dashboard_2023-10.png)
+
+The Streamlit dashboard shows the status for any month: model error, input drift, target drift, a PSI heatmap and the estimated excess error in dollars. The screenshot shows 2023-10, which is red.
