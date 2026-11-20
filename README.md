@@ -56,3 +56,25 @@ Note: `data/` and `models/` are not stored in Git, so run the steps above to rec
 ![DriftGuard dashboard](docs/images/dashboard_2023-10.png)
 
 The Streamlit dashboard shows the status for any month: model error, input drift, target drift, a PSI heatmap and the estimated excess error in dollars. The screenshot shows 2023-10, which is red.
+
+## Results by period
+
+| Period | MAE | Status | What happened |
+|---|---|---|---|
+| 2019 (baseline) | about $1.13 | green | Normal. These months include training rows. |
+| 2020-04 (COVID) | $1.98 | red | Severe input drift (location PSI 0.64), trips down 97% |
+| 2021-07 to 2022-10 | $1.26 to $1.41 | green | Recovered |
+| 2023-01 | $4.30 | red | Target drift begins, model under-predicts by 23% |
+| 2023-10 | $5.79 | red | MAE is 5.1x baseline, under-prediction 28% |
+
+Status combines three signals: input drift (PSI), target drift (PSI on fare) and model error relative to baseline. Thresholds: PSI 0.10 amber and 0.25 red, MAE 1.25x amber and 1.75x red.
+
+## Limitations
+
+- Data is a sample: up to 200,000 clean trips per month, and only 4 months per year (20 months in total).
+- The 2019 months are partly training data, so their error is slightly better than true out-of-sample error.
+- The dollar figures are estimated excess prediction error, not lost revenue.
+- The fare level jump in 2023 is shown in the data, but its cause was not verified against official fare rules.
+- The challenger model was trained on only 3 months. It recovered about half of the excess error, not all of it.
+- The Dockerfile is included but was not tested on the author's machine.
+- Alerts run in dry-run mode unless Slack or email credentials are set.
