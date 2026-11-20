@@ -1,5 +1,9 @@
 ﻿# DriftGuard: ML Model Drift Detection and Monitoring
 
+
+**Live demo:** [driftguard-app.streamlit.app](https://driftguard-app.streamlit.app/)
+(Free hosting: if the app is asleep, click "wake up" and wait about 30 seconds.)
+
 ![CI](https://github.com/SharadaBende/driftguard/actions/workflows/ci.yml/badge.svg)
 
 DriftGuard monitors a fare-prediction model after deployment. It trains an XGBoost model on NYC Yellow Taxi trips from 2019, then tracks input drift, target drift and model performance across 20 months of real data (2019 to 2023, about 73 million trips).
@@ -68,6 +72,8 @@ Feature importance ranking stays stable between 2019 and 2023-10, with trip dist
 ![Dashboard 2023-10](docs/images/dashboard_2023-10.png)
 
 The Streamlit dashboard shows the status for any month: model error, input drift, target drift, a PSI heatmap and the estimated excess error in dollars. The two screenshots show the two different kinds of red.
+
+The [live demo](https://driftguard-app.streamlit.app/) reads the precomputed CSVs in `reports/`, so it needs no raw data or model files.
 
 ## Results by period
 
