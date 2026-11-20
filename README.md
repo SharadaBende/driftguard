@@ -88,7 +88,7 @@ Status combines three signals: input drift (PSI), target drift (PSI on fare) and
 - The dollar figures are estimated excess prediction error, not lost revenue.
 - The fare level jump in 2023 is shown in the data, but its cause was not verified against official fare rules.
 - The challenger model was trained on only 3 months. It recovered about half of the excess error, not all of it.
-- The Dockerfile is included but was not tested on the author's machine.
+- The Docker image was built and tested locally, but model files are not stored in Git, so it cannot be built from a fresh clone until the models are recreated.
 - Alerts run in dry-run mode unless Slack or email credentials are set.
 
 
@@ -107,3 +107,13 @@ Then start any of these (use a separate terminal for each):
     python src\alerts.py --month 2023-10                  # alert dry run
 
 
+
+
+## Docker
+
+The API runs in a container. Run the training steps first so that `models/` exists, then:
+
+    docker build -t driftguard .
+    docker run -d -p 8000:8000 --name driftguard-api driftguard
+
+API docs are at http://127.0.0.1:8000/docs. Stop it with `docker rm -f driftguard-api`.
